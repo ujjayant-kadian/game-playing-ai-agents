@@ -1,0 +1,23 @@
+===== Experiment Results =====
+Game: ttt
+Agent: Minimax, Second Player, Max Depth: inf, Without Alpha-Beta Pruning
+Games Played: 10
+Agent Wins: 0 (0.0%)
+Agent Losses: 0 (0.0%)
+Draws: 10 (100.0%)
+
+===== Detailed Game Metrics =====
+Total Moves: 90
+Average Moves Per Game: 9.00
+Min/Max Moves in a Game: 9/9
+
+Total Time: 2.45 seconds
+Average Time Per Move: 0.0272 seconds
+Min/Max Time for a Move: 0.0000/0.2540 seconds
+
+Average Game Duration: 0.25 seconds
+Min/Max Game Duration: 0.23/0.26 seconds
+
+Total States Explored: 565620
+Average States Explored Per Game: 56562
+Min/Max States Explored in a Game: 56490/56730

@@ -1,0 +1,15 @@
+filename,game,match_type,agent_type,agent_player,agent_wins,agent_losses,agent_draws,agent_win_rate,games_played,avg_moves,avg_time_per_move,avg_game_duration,states_explored
+c4_qlearning_no_q_table_trained_10000ep_agent_first_summary.txt,Connect 4,agent_vs_default,Q-Learning,Player 1,75,22,3,0.75,100,21.25,0.0009,0.02,
+c4_minimax_with_pruning_depth_5_agent_first_summary.txt,Connect 4,agent_vs_default,Minimax,Player 1,10,0,0,1.0,10,22.4,0.1635,3.66,208161.0
+c4_minimax_no_pruning_depth_5_agent_second_summary.txt,Connect 4,agent_vs_default,Minimax,Player 2,10,0,0,1.0,10,22.0,1.2572,27.66,1357570.0
+ttt_qlearning_no_q_table_untrained_agent_first_summary.txt,Tic Tac Toe,agent_vs_default,Q-Learning,Player 1,1,9,0,0.1,10,6.5,0.0,0.0,
+ttt_qlearning_with_q_table_trained_10000ep_agent_second_summary.txt,Tic Tac Toe,agent_vs_default,Q-Learning,Player 2,0,0,100,0.0,100,9.0,0.0,0.0,
+ttt_qlearning_no_q_table_untrained_agent_second_summary.txt,Tic Tac Toe,agent_vs_default,Q-Learning,Player 2,0,8,2,0.0,10,5.8,0.0,0.0,
+ttt_minimax_no_pruning_depth_5_agent_second_summary.txt,Tic Tac Toe,agent_vs_default,Minimax,Player 2,0,0,10,0.0,10,9.0,0.0165,0.15,86940.0
+ttt_minimax_with_pruning_depth_5_agent_second_summary.txt,Tic Tac Toe,agent_vs_default,Minimax,Player 2,0,0,10,0.0,10,9.0,0.0017,0.02,10331.0
+c4_minimax_with_pruning_depth_5_agent_second_summary.txt,Connect 4,agent_vs_default,Minimax,Player 2,10,0,0,1.0,10,23.8,0.1575,3.75,207949.0
+ttt_minimax_with_pruning_depth_5_agent_first_summary.txt,Tic Tac Toe,agent_vs_default,Minimax,Player 1,0,0,10,0.0,10,9.0,0.0065,0.06,36494.0
+ttt_qlearning_with_q_table_untrained_agent_second_summary.txt,Tic Tac Toe,agent_vs_default,Q-Learning,Player 2,0,0,100,0.0,100,9.0,0.0001,0.0,
+ttt_minimax_with_pruning_unlimited_depth_agent_second_summary.txt,Tic Tac Toe,agent_vs_default,Minimax,Player 2,0,0,10,0.0,10,9.0,0.0014,0.01,25484.0
+ttt_qlearning_no_q_table_trained_10000ep_agent_second_summary.txt,Tic Tac Toe,agent_vs_default,Q-Learning,Player 2,0,0,100,0.0,100,9.0,0.0,0.0,
+ttt_minimax_no_pruning_unlimited_depth_agent_second_summary.txt,Tic Tac Toe,agent_vs_default,Minimax,Player 2,0,0,10,0.0,10,9.0,0.0272,0.25,565620.0

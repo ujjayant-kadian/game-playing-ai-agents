@@ -1,0 +1,26 @@
+===== Experiment Results =====
+Game: c4
+Agent: Q-Learning, First Player, Q-Table: Trained for 10000 episodes, saved to models/c4_qtable.pkl
+Games Played: 100
+Agent Wins: 75 (75.0%)
+Agent Losses: 22 (22.0%)
+Draws: 3 (3.0%)
+
+===== Detailed Game Metrics =====
+Total Moves: 2125
+Average Moves Per Game: 21.25
+Min/Max Moves in a Game: 11/42
+
+Total Time: 1.83 seconds
+Average Time Per Move: 0.0009 seconds
+Min/Max Time for a Move: 0.0000/0.0046 seconds
+
+Average Game Duration: 0.02 seconds
+Min/Max Game Duration: 0.01/0.03 seconds
+
+
+===== Q-Learning Training Summary =====
+Training Episodes: 10000
+Final Evaluation Win Rate: 0.72
+Q-table size: 15510 states
+Q-table memory usage: 34911.27 KB

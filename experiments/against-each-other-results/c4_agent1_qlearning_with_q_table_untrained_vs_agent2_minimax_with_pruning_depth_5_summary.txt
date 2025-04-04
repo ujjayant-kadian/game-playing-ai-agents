@@ -1,0 +1,39 @@
+===== Experiment Results =====
+Game: c4
+
+Agent 1 (Player 1): qlearning
+  Q-Table: Loaded from models/c4_qtable.pkl
+
+Agent 2 (Player 2): minimax
+  Max Depth: 5
+  Alpha-Beta Pruning: Enabled
+
+Games Played: 100
+Agent 1 Wins: 0 (0.0%)
+Agent 2 Wins: 100 (100.0%)
+Draws: 0 (0.0%)
+
+===== Detailed Game Metrics =====
+
+Agent 1 Metrics:
+Total Moves: 800
+Average Moves Per Game: 8.00
+Min/Max Moves in a Game: 8/8
+Total Time: 1.95 seconds
+Average Time Per Move: 0.0024 seconds
+Min/Max Time for a Move: 0.0002/0.5574 seconds
+
+Agent 2 Metrics:
+Total Moves: 800
+Average Moves Per Game: 8.00
+Min/Max Moves in a Game: 8/8
+Total Time: 400.65 seconds
+Average Time Per Move: 0.5008 seconds
+Min/Max Time for a Move: 0.1833/1.3690 seconds
+Total States Explored: 2212800
+Average States Explored Per Game: 22128
+Min/Max States Explored in a Game: 22128/22128
+
+Overall Game Information:
+Average Game Duration: 4.03 seconds
+Min/Max Game Duration: 3.64/5.13 seconds

@@ -11,6 +11,7 @@ from games import TicTacToe, Connect4
 
 # Import agents
 from agents import MinimaxTicTacToe, MinimaxConnect4
+from agents.qlearning import QLearningTicTacToe, QLearningConnect4
 from opponents import DefaultOpponentTTT, DefaultOpponentC4
 
 # Import metrics
@@ -26,19 +27,37 @@ def timeout_handler(signum, frame):
 
 def parse_args():
     """Parse command line arguments."""
-    parser = argparse.ArgumentParser(description='Evaluate minimax agents against default opponents')
+    parser = argparse.ArgumentParser(description='Evaluate AI agents against default opponents')
     
     # Game selection
     parser.add_argument('--game', type=str, choices=['ttt', 'c4'], default='ttt',
                         help='Game to play: ttt (Tic-Tac-Toe) or c4 (Connect-4)')
     
-    # Agent configuration
-    parser.add_argument('--minimax-first', action='store_true',
-                        help='Minimax agent plays first (player 1)')
+    # Agent type selection
+    parser.add_argument('--agent-type', type=str, choices=['minimax', 'qlearning'], default='minimax',
+                        help='Type of agent to use: minimax or qlearning (default: minimax)')
+    
+    # Agent configuration - common
+    parser.add_argument('--agent-first', action='store_true',
+                        help='AI agent plays first (player 1)')
+    
+    # Minimax specific configuration
     parser.add_argument('--max-depth', type=int, default=float('inf'),
                         help='Maximum depth for minimax search (default: unlimited)')
     parser.add_argument('--use-pruning', action='store_true',
-                        help='Use alpha-beta pruning (default: False)')
+                        help='Use alpha-beta pruning for minimax (default: False)')
+    
+    # Q-learning specific configuration
+    parser.add_argument('--q-table', type=str, default=None,
+                        help='Path to a saved Q-table file for the Q-learning agent')
+    parser.add_argument('--train', action='store_true',
+                        help='Train the Q-learning agent before evaluation')
+    parser.add_argument('--train-episodes', type=int, default=10000,
+                        help='Number of episodes to train (default: 10000)')
+    parser.add_argument('--eval-interval', type=int, default=1000,
+                        help='Evaluation interval during training (default: 1000)')
+    parser.add_argument('--save-q-table', type=str, default=None,
+                        help='Path to save the trained Q-table')
     
     # Experiment configuration
     parser.add_argument('--num-games', type=int, default=10,
@@ -58,23 +77,29 @@ def parse_args():
     
     # Auto-generate experiment name if not provided
     if args.experiment_name is None:
-        pruning_str = 'with_pruning' if args.use_pruning else 'no_pruning'
-        depth_str = f'depth_{args.max_depth}' if args.max_depth != float('inf') else 'unlimited_depth'
-        order_str = 'minimax_first' if args.minimax_first else 'minimax_second'
-        args.experiment_name = f"{args.game}_{pruning_str}_{depth_str}_{order_str}"
+        if args.agent_type == 'minimax':
+            pruning_str = 'with_pruning' if args.use_pruning else 'no_pruning'
+            depth_str = f'depth_{args.max_depth}' if args.max_depth != float('inf') else 'unlimited_depth'
+            order_str = 'agent_first' if args.agent_first else 'agent_second'
+            args.experiment_name = f"{args.game}_{args.agent_type}_{pruning_str}_{depth_str}_{order_str}"
+        else:  # qlearning
+            q_table_str = 'with_q_table' if args.q_table else 'no_q_table'
+            train_str = f'trained_{args.train_episodes}ep' if args.train else 'untrained'
+            order_str = 'agent_first' if args.agent_first else 'agent_second'
+            args.experiment_name = f"{args.game}_{args.agent_type}_{q_table_str}_{train_str}_{order_str}"
     
     return args
 
 def run_experiment(args):
     """Run the experiment with the given arguments."""
     # Safety check for potentially very slow experiments
-    if args.game == 'c4' and args.max_depth == float('inf') and not args.use_pruning and not args.force:
+    if args.agent_type == 'minimax' and args.game == 'c4' and args.max_depth == float('inf') and not args.use_pruning and not args.force:
         print("WARNING: Running Connect-4 with unlimited depth and no pruning will be EXTREMELY slow.")
         print("Consider using a limited depth (--max-depth) or enabling pruning (--use-pruning).")
         print("To run anyway, use the --force flag.")
         return
     
-    if args.game == 'c4' and args.max_depth > 6 and not args.use_pruning and not args.force:
+    if args.agent_type == 'minimax' and args.game == 'c4' and args.max_depth > 6 and not args.use_pruning and not args.force:
         print(f"WARNING: Running Connect-4 with depth {args.max_depth} and no pruning will be very slow.")
         print("Consider using a smaller depth or enabling pruning.")
         print("To run anyway, use the --force flag.")
@@ -83,25 +108,98 @@ def run_experiment(args):
     # Setup metrics manager
     metrics = MetricsManager()
     
-    # Create game instance
+    # Create game instance and agents based on agent type
     if args.game == 'ttt':
         game_class = TicTacToe
-        minimax_agent = MinimaxTicTacToe(max_depth=args.max_depth, use_pruning=args.use_pruning, metrics_manager=metrics)
+        if args.agent_type == 'minimax':
+            ai_agent = MinimaxTicTacToe(max_depth=args.max_depth, use_pruning=args.use_pruning, metrics_manager=metrics)
+        else:  # qlearning
+            ai_agent = QLearningTicTacToe(metrics_manager=metrics)
+            if args.q_table:
+                try:
+                    ai_agent.load(args.q_table)
+                    print(f"Loaded Q-table from {args.q_table}")
+                except Exception as e:
+                    print(f"Error loading Q-table: {e}")
         default_agent = DefaultOpponentTTT()
     else:  # Connect-4
         game_class = Connect4
-        minimax_agent = MinimaxConnect4(max_depth=args.max_depth, use_pruning=args.use_pruning, metrics_manager=metrics)
+        if args.agent_type == 'minimax':
+            ai_agent = MinimaxConnect4(max_depth=args.max_depth, use_pruning=args.use_pruning, metrics_manager=metrics)
+        else:  # qlearning
+            ai_agent = QLearningConnect4(metrics_manager=metrics)
+            if args.q_table:
+                try:
+                    ai_agent.load(args.q_table)
+                    print(f"Loaded Q-table from {args.q_table}")
+                except Exception as e:
+                    print(f"Error loading Q-table: {e}")
         default_agent = DefaultOpponentC4()
     
-    # Determine player numbers
-    if args.minimax_first:
-        agent1 = minimax_agent
+    # Set the player numbers based on who goes first
+    if args.agent_first:
+        ai_agent.player_number = 1
+        default_agent.player_number = 2
+    else:
+        ai_agent.player_number = 2
+        default_agent.player_number = 1
+    
+    # Train Q-learning agent if requested
+    if args.agent_type == 'qlearning' and args.train:
+        # Create output directory if it doesn't exist (for saving Q-table)
+        if args.save_q_table:
+            os.makedirs(os.path.dirname(os.path.abspath(args.save_q_table)), exist_ok=True)
+        
+        print(f"\n===== Training Q-Learning Agent =====")
+        print(f"Game: {args.game}")
+        print(f"Episodes: {args.train_episodes}")
+        print(f"Agent plays as Player {ai_agent.player_number}")
+        print(f"Evaluation Interval: {args.eval_interval}")
+        
+        # Set up opponent for training
+        train_opponent = default_agent  # Use the default opponent for training
+        
+        # Start timing for training
+        train_start_time = time.time()
+        
+        # Train the agent
+        training_stats = ai_agent.train(
+            num_episodes=args.train_episodes,
+            eval_interval=args.eval_interval,
+            eval_games=50,  # Fixed number of evaluation games during training
+            opponent=train_opponent
+        )
+        
+        train_end_time = time.time()
+        train_duration = train_end_time - train_start_time
+        
+        print(f"\n===== Training Complete =====")
+        print(f"Training duration: {train_duration:.1f} seconds")
+        
+        # Save the trained Q-table if requested
+        if args.save_q_table:
+            ai_agent.save(args.save_q_table)
+            print(f"Saved trained Q-table to {args.save_q_table}")
+        
+        # Print final training evaluation
+        last_win_rate = training_stats['win_rate'][-1][1] if training_stats['win_rate'] else 0
+        print(f"Final evaluation win rate: {last_win_rate:.2f}")
+        
+        # Update metrics with Q-table
+        metrics.set_q_table(ai_agent.q_table)
+        
+        # Print Q-table memory usage
+        metrics.print_q_table_memory()
+        
+        print("\n")  # Add a blank line before evaluation
+    
+    # Set up agents for evaluation
+    if args.agent_first:
+        agent1 = ai_agent
         agent2 = default_agent
-        default_agent.player_number = 2  # Ensure correct player number
     else:
         agent1 = default_agent
-        agent2 = minimax_agent
-        default_agent.player_number = 1  # Ensure correct player number
+        agent2 = ai_agent
     
     # Create output directory if it doesn't exist
     os.makedirs(args.output_dir, exist_ok=True)
@@ -109,6 +207,8 @@ def run_experiment(args):
     # Run games
     results = []
     timeouts = 0
+    print(f"===== Evaluating Agent =====")
+    print(f"Running {args.num_games} evaluation games...")
     for game_num in tqdm(range(args.num_games), desc="Playing games"):
         try:
             result = play_single_game(game_class, agent1, agent2, metrics, args.verbose, args.move_timeout)
@@ -122,24 +222,45 @@ def run_experiment(args):
             print(f"Game {game_num+1} timed out after {args.move_timeout} seconds")
             timeouts += 1
             # Record as a loss for the player who timed out
-            # We assume it was the minimax agent that timed out
-            results.append(3 - (1 if args.minimax_first else 2))
+            # We assume it was the AI agent that timed out
+            results.append(3 - (1 if args.agent_first else 2))
             metrics.end_game('timeout')
     
     # Summarize results
-    minimax_player = 1 if args.minimax_first else 2
-    wins = results.count(minimax_player)
-    losses = results.count(3 - minimax_player)
+    ai_player = 1 if args.agent_first else 2
+    wins = results.count(ai_player)
+    losses = results.count(3 - ai_player)
     draws = results.count(0)
     
     print("\n===== Experiment Results =====")
     print(f"Game: {args.game}")
-    print(f"Minimax Config: {'First' if args.minimax_first else 'Second'} Player, "
-          f"Max Depth: {args.max_depth}, "
-          f"{'With' if args.use_pruning else 'Without'} Alpha-Beta Pruning")
+    
+    # Display appropriate configuration details based on agent type
+    if args.agent_type == 'minimax':
+        print(f"Agent: Minimax, {'First' if args.agent_first else 'Second'} Player, "
+              f"Max Depth: {args.max_depth}, "
+              f"{'With' if args.use_pruning else 'Without'} Alpha-Beta Pruning")
+    else:  # qlearning
+        # Determine Q-table source for display
+        if args.train:
+            q_table_info = f"Trained for {args.train_episodes} episodes"
+            if args.save_q_table:
+                q_table_info += f", saved to {args.save_q_table}"
+        elif args.q_table:
+            q_table_info = f"Loaded from {args.q_table}"
+        else:
+            q_table_info = "Default (untrained)"
+            
+        print(f"Agent: Q-Learning, {'First' if args.agent_first else 'Second'} Player, "
+              f"Q-Table: {q_table_info}")
+        
+        # If we have a Q-table, print its size
+        if metrics.q_table is not None:
+            metrics.print_q_table_memory()
+    
     print(f"Games Played: {args.num_games}")
-    print(f"Minimax Wins: {wins} ({wins/args.num_games*100:.1f}%)")
-    print(f"Minimax Losses: {losses} ({losses/args.num_games*100:.1f}%)")
+    print(f"Agent Wins: {wins} ({wins/args.num_games*100:.1f}%)")
+    print(f"Agent Losses: {losses} ({losses/args.num_games*100:.1f}%)")
     print(f"Draws: {draws} ({draws/args.num_games*100:.1f}%)")
     if timeouts > 0:
         print(f"Timeouts: {timeouts} ({timeouts/args.num_games*100:.1f}%)")
@@ -150,32 +271,91 @@ def run_experiment(args):
     # Add experiment-specific information to metrics
     experiment_info = {
         'game': args.game,
-        'minimax_player': 'first' if args.minimax_first else 'second',
-        'max_depth': str(args.max_depth),
-        'use_pruning': args.use_pruning,
+        'agent_type': args.agent_type,
+        'agent_player': 'first' if args.agent_first else 'second',
         'num_games': args.num_games,
         'timeouts': timeouts
     }
     
+    # Add agent-specific configuration to metrics
+    if args.agent_type == 'minimax':
+        experiment_info.update({
+            'max_depth': str(args.max_depth),
+            'use_pruning': args.use_pruning
+        })
+    else:  # qlearning
+        experiment_info.update({
+            'q_table_path': args.q_table,
+            'trained': args.train,
+            'train_episodes': args.train_episodes if args.train else 0,
+            'save_q_table_path': args.save_q_table
+        })
+    
     # Combine all metrics
     all_metrics = {
         'experiment_info': experiment_info,
-        'minimax_results': {
+        'agent_results': {
             'wins': wins,
             'losses': losses,
             'draws': draws,
             'win_rate': wins/args.num_games,
             'loss_rate': losses/args.num_games,
             'draw_rate': draws/args.num_games,
-        },
-        'game_metrics': game_metrics
+        }
     }
     
-    # Save raw metrics data as JSON
+    # Add appropriate metrics based on agent type
+    if args.agent_type == 'minimax':
+        all_metrics['game_metrics'] = game_metrics
+    elif args.agent_type == 'qlearning':
+        # For Q-learning, we focus on different metrics
+        q_metrics = {
+            'total_moves': game_metrics['total_moves'],
+            'avg_moves': game_metrics['avg_moves'],
+            'min_moves': game_metrics['min_moves'],
+            'max_moves': game_metrics['max_moves'],
+            'total_time': game_metrics['total_time'],
+            'avg_time_per_move': game_metrics['avg_time_per_move'],
+            'min_time_per_move': game_metrics['min_time_per_move'],
+            'max_time_per_move': game_metrics['max_time_per_move'],
+            'avg_game_duration': game_metrics['avg_game_duration'],
+            'min_game_duration': game_metrics['min_game_duration'],
+            'max_game_duration': game_metrics['max_game_duration']
+        }
+        
+        # Add Q-table metrics if available
+        if metrics.q_table is not None:
+            q_metrics['q_table_size'] = len(metrics.q_table)
+            q_metrics['q_table_memory_kb'] = metrics.get_q_table_memory() / 1024
+        
+        all_metrics['game_metrics'] = q_metrics
+    
+    # Add training stats if Q-learning was trained
+    if args.agent_type == 'qlearning' and args.train and hasattr(ai_agent, 'training_stats'):
+        # Save only important training data points to avoid huge JSON files
+        training_summary = {
+            'episode_rewards': [ai_agent.training_stats['episode_rewards'][i] 
+                               for i in range(0, len(ai_agent.training_stats['episode_rewards']), 
+                                            max(1, args.train_episodes // 100))],  # Sample about 100 points
+            'win_rate': ai_agent.training_stats['win_rate'],
+            'episode_lengths': [ai_agent.training_stats['episode_lengths'][i]
+                              for i in range(0, len(ai_agent.training_stats['episode_lengths']),
+                                          max(1, args.train_episodes // 100))]  # Sample about 100 points
+        }
+        all_metrics['training_stats'] = training_summary
+    
+    # Save raw metrics data as CSV
     metrics_file = os.path.join(args.output_dir, f"{args.experiment_name}_metrics.csv")
     metrics.save_game_log(metrics_file)
     print(f"Metrics saved to {metrics_file}")
     
+    # Save Q-learning specific metrics if applicable
+    if args.agent_type == 'qlearning':
+        qlearn_metrics_file = os.path.join(args.output_dir, f"{args.experiment_name}_qlearn_metrics")
+        metrics.save_q_learning_logs(qlearn_metrics_file)
+        print(f"Q-learning metrics saved to {qlearn_metrics_file}_*.csv")
+    
+    # Save metrics data as JSON
     metrics_json_file = os.path.join(args.output_dir, f"{args.experiment_name}_metrics.json")
     with open(metrics_json_file, 'w') as f:
         json.dump(all_metrics, f, indent=2)
@@ -186,12 +366,28 @@ def run_experiment(args):
     with open(summary_file, 'w') as f:
         f.write(f"===== Experiment Results =====\n")
         f.write(f"Game: {args.game}\n")
-        f.write(f"Minimax Config: {'First' if args.minimax_first else 'Second'} Player, "
-                f"Max Depth: {args.max_depth}, "
-                f"{'With' if args.use_pruning else 'Without'} Alpha-Beta Pruning\n")
+        
+        # Write agent-specific details
+        if args.agent_type == 'minimax':
+            f.write(f"Agent: Minimax, {'First' if args.agent_first else 'Second'} Player, "
+                    f"Max Depth: {args.max_depth}, "
+                    f"{'With' if args.use_pruning else 'Without'} Alpha-Beta Pruning\n")
+        else:  # qlearning
+            if args.train:
+                q_table_info = f"Trained for {args.train_episodes} episodes"
+                if args.save_q_table:
+                    q_table_info += f", saved to {args.save_q_table}"
+            elif args.q_table:
+                q_table_info = f"Loaded from {args.q_table}"
+            else:
+                q_table_info = "Default (untrained)"
+                
+            f.write(f"Agent: Q-Learning, {'First' if args.agent_first else 'Second'} Player, "
+                    f"Q-Table: {q_table_info}\n")
+        
         f.write(f"Games Played: {args.num_games}\n")
-        f.write(f"Minimax Wins: {wins} ({wins/args.num_games*100:.1f}%)\n")
-        f.write(f"Minimax Losses: {losses} ({losses/args.num_games*100:.1f}%)\n")
+        f.write(f"Agent Wins: {wins} ({wins/args.num_games*100:.1f}%)\n")
+        f.write(f"Agent Losses: {losses} ({losses/args.num_games*100:.1f}%)\n")
         f.write(f"Draws: {draws} ({draws/args.num_games*100:.1f}%)\n")
         if timeouts > 0:
             f.write(f"Timeouts: {timeouts} ({timeouts/args.num_games*100:.1f}%)\n")
@@ -209,9 +405,23 @@ def run_experiment(args):
         f.write(f"Average Game Duration: {game_metrics['avg_game_duration']:.2f} seconds\n")
         f.write(f"Min/Max Game Duration: {game_metrics['min_game_duration']:.2f}/{game_metrics['max_game_duration']:.2f} seconds\n\n")
         
-        f.write(f"Total States Explored: {game_metrics['total_states_explored']}\n")
-        f.write(f"Average States Explored Per Game: {game_metrics['avg_states_explored']:.0f}\n")
-        f.write(f"Min/Max States Explored in a Game: {game_metrics['min_states_explored']}/{game_metrics['max_states_explored']}\n")
+        if args.agent_type == 'minimax':
+            f.write(f"Total States Explored: {game_metrics['total_states_explored']}\n")
+            f.write(f"Average States Explored Per Game: {game_metrics['avg_states_explored']:.0f}\n")
+            f.write(f"Min/Max States Explored in a Game: {game_metrics['min_states_explored']}/{game_metrics['max_states_explored']}\n")
+        
+        # Add Q-learning specific metrics if applicable
+        if args.agent_type == 'qlearning' and args.train:
+            f.write("\n===== Q-Learning Training Summary =====\n")
+            f.write(f"Training Episodes: {args.train_episodes}\n")
+            if ai_agent.training_stats['win_rate']:
+                final_win_rate = ai_agent.training_stats['win_rate'][-1][1]
+                f.write(f"Final Evaluation Win Rate: {final_win_rate:.2f}\n")
+            
+            if metrics.q_table:
+                f.write(f"Q-table size: {len(metrics.q_table)} states\n")
+                mem_usage = metrics.get_q_table_memory() / 1024
+                f.write(f"Q-table memory usage: {mem_usage:.2f} KB\n")
         
     print(f"Summary saved to {summary_file}")
 
@@ -222,6 +432,12 @@ def play_single_game(game_class, agent1, agent2, metrics, verbose=False, move_ti
     
     # Start metrics for this game
     metrics.start_game()
+    
+    # Track agent types for proper metrics logging
+    agent1_is_minimax = isinstance(agent1, (MinimaxTicTacToe, MinimaxConnect4))
+    agent2_is_minimax = isinstance(agent2, (MinimaxTicTacToe, MinimaxConnect4))
+    agent1_is_qlearning = isinstance(agent1, (QLearningTicTacToe, QLearningConnect4))
+    agent2_is_qlearning = isinstance(agent2, (QLearningTicTacToe, QLearningConnect4))
     
     move_count = 0
     while not game_over:
@@ -274,8 +490,9 @@ def play_single_game(game_class, agent1, agent2, metrics, verbose=False, move_ti
                 # Record outcome
                 if winner == 0:
                     outcome = 'draw'
-                elif (winner == 1 and isinstance(agent1, (MinimaxTicTacToe, MinimaxConnect4))) or \
-                     (winner == 2 and isinstance(agent2, (MinimaxTicTacToe, MinimaxConnect4))):
+                # Check if AI agent won (player 1 is agent1, player 2 is agent2)
+                elif (winner == 1 and (agent1_is_minimax or agent1_is_qlearning)) or \
+                     (winner == 2 and (agent2_is_minimax or agent2_is_qlearning)):
                     outcome = 'win'
                 else:
                     outcome = 'loss'

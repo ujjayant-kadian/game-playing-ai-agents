@@ -1,0 +1,36 @@
+{
+  "experiment_info": {
+    "game": "ttt",
+    "agent_type": "qlearning",
+    "agent_player": "second",
+    "num_games": 100,
+    "timeouts": 0,
+    "q_table_path": "models/ttt_qtable.pkl",
+    "trained": false,
+    "train_episodes": 0,
+    "save_q_table_path": null
+  },
+  "agent_results": {
+    "wins": 0,
+    "losses": 0,
+    "draws": 100,
+    "win_rate": 0.0,
+    "loss_rate": 0.0,
+    "draw_rate": 1.0
+  },
+  "game_metrics": {
+    "total_moves": 900,
+    "avg_moves": 9.0,
+    "min_moves": 9,
+    "max_moves": 9,
+    "total_time": 0.04501056671142578,
+    "avg_time_per_move": 5.001174079047309e-05,
+    "min_time_per_move": 7.867813110351562e-06,
+    "max_time_per_move": 0.0014100074768066406,
+    "avg_game_duration": 0.0005774497985839844,
+    "min_game_duration": 0.00032973289489746094,
+    "max_game_duration": 0.002048015594482422,
+    "q_table_size": 327,
+    "q_table_memory_kb": 407.09375
+  }
+}

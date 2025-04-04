@@ -1,0 +1,39 @@
+===== Experiment Results =====
+Game: ttt
+
+Agent 1 (Player 1): qlearning
+  Q-Table: Loaded from models/ttt_qtable.pkl
+
+Agent 2 (Player 2): minimax
+  Max Depth: 5
+  Alpha-Beta Pruning: Enabled
+
+Games Played: 100
+Agent 1 Wins: 0 (0.0%)
+Agent 2 Wins: 89 (89.0%)
+Draws: 11 (11.0%)
+
+===== Detailed Game Metrics =====
+
+Agent 1 Metrics:
+Total Moves: 359
+Average Moves Per Game: 3.59
+Min/Max Moves in a Game: 3/5
+Total Time: 0.01 seconds
+Average Time Per Move: 0.0000 seconds
+Min/Max Time for a Move: 0.0000/0.0003 seconds
+
+Agent 2 Metrics:
+Total Moves: 348
+Average Moves Per Game: 3.48
+Min/Max Moves in a Game: 3/4
+Total Time: 1.90 seconds
+Average Time Per Move: 0.0055 seconds
+Min/Max Time for a Move: 0.0000/0.0267 seconds
+Total States Explored: 142830
+Average States Explored Per Game: 1428
+Min/Max States Explored in a Game: 864/2071
+
+Overall Game Information:
+Average Game Duration: 0.02 seconds
+Min/Max Game Duration: 0.01/0.03 seconds

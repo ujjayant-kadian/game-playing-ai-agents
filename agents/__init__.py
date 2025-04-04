@@ -7,4 +7,5 @@ This package contains:
 """ 
 
 from .minimax import MinimaxTicTacToe, MinimaxConnect4
-__all__ = ['MinimaxTicTacToe', 'MinimaxConnect4']
+from .qlearning import QLearningTicTacToe, QLearningConnect4
+__all__ = ['MinimaxTicTacToe', 'MinimaxConnect4', 'QLearningTicTacToe', 'QLearningConnect4']

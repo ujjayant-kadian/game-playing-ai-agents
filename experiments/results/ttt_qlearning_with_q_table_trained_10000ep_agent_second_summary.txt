@@ -1,0 +1,26 @@
+===== Experiment Results =====
+Game: ttt
+Agent: Q-Learning, Second Player, Q-Table: Trained for 10000 episodes
+Games Played: 100
+Agent Wins: 0 (0.0%)
+Agent Losses: 0 (0.0%)
+Draws: 100 (100.0%)
+
+===== Detailed Game Metrics =====
+Total Moves: 900
+Average Moves Per Game: 9.00
+Min/Max Moves in a Game: 9/9
+
+Total Time: 0.04 seconds
+Average Time Per Move: 0.0000 seconds
+Min/Max Time for a Move: 0.0000/0.0003 seconds
+
+Average Game Duration: 0.00 seconds
+Min/Max Game Duration: 0.00/0.00 seconds
+
+
+===== Q-Learning Training Summary =====
+Training Episodes: 10000
+Final Evaluation Win Rate: 0.16
+Q-table size: 350 states
+Q-table memory usage: 444.67 KB

@@ -1,0 +1,5 @@
+filename,game,match_type,agent1_type,agent2_type,agent1_wins,agent2_wins,draws,games_played,agent1_avg_moves,agent2_avg_moves,agent1_avg_time,agent2_avg_time,states_explored,avg_game_duration
+c4_agent1_qlearning_with_q_table_untrained_vs_agent2_minimax_with_pruning_depth_5_summary.txt,Connect 4,agent_vs_agent,qlearning,minimax,0,100,0,100,8.0,8.0,0.0024,0.5008,2212800,4.03
+ttt_agent1_qlearning_with_q_table_untrained_vs_agent2_minimax_with_pruning_depth_5_summary.txt,Tic Tac Toe,agent_vs_agent,qlearning,minimax,0,89,11,100,3.59,3.48,0.0,0.0055,142830,0.02
+ttt_agent1_minimax_with_pruning_depth_5_vs_agent2_qlearning_with_q_table_untrained_summary.txt,Tic Tac Toe,agent_vs_agent,minimax,qlearning,43,0,57,100,4.63,3.63,0.0122,0.0,355791,0.06
+c4_agent1_minimax_with_pruning_depth_5_vs_agent2_qlearning_with_q_table_untrained_summary.txt,Connect 4,agent_vs_agent,minimax,qlearning,100,0,0,100,5.0,4.0,0.4702,0.0016,1318500,2.36

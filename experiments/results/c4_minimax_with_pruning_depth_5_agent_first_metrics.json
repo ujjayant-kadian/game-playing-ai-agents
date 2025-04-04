@@ -1,0 +1,43 @@
+{
+  "experiment_info": {
+    "game": "c4",
+    "agent_type": "minimax",
+    "agent_player": "first",
+    "num_games": 10,
+    "timeouts": 0,
+    "max_depth": "5",
+    "use_pruning": true
+  },
+  "agent_results": {
+    "wins": 10,
+    "losses": 0,
+    "draws": 0,
+    "win_rate": 1.0,
+    "loss_rate": 0.0,
+    "draw_rate": 0.0
+  },
+  "game_metrics": {
+    "total_games": 10,
+    "wins": 10,
+    "losses": 0,
+    "draws": 0,
+    "win_rate": 1.0,
+    "loss_rate": 0.0,
+    "draw_rate": 0.0,
+    "avg_moves": 22.4,
+    "min_moves": 19,
+    "max_moves": 41,
+    "total_moves": 224,
+    "avg_time_per_move": 0.16351887583732605,
+    "min_time_per_move": 2.8371810913085938e-05,
+    "max_time_per_move": 0.8151116371154785,
+    "total_time": 36.628228187561035,
+    "avg_game_duration": 3.6643712759017943,
+    "min_game_duration": 3.0660550594329834,
+    "max_game_duration": 4.855808734893799,
+    "avg_states_explored": 20816.1,
+    "min_states_explored": 16844,
+    "max_states_explored": 26589,
+    "total_states_explored": 208161
+  }
+}

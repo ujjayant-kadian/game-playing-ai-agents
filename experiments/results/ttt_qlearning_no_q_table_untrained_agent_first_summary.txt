@@ -1,0 +1,20 @@
+===== Experiment Results =====
+Game: ttt
+Agent: Q-Learning, First Player, Q-Table: Default (untrained)
+Games Played: 10
+Agent Wins: 1 (10.0%)
+Agent Losses: 9 (90.0%)
+Draws: 0 (0.0%)
+
+===== Detailed Game Metrics =====
+Total Moves: 65
+Average Moves Per Game: 6.50
+Min/Max Moves in a Game: 6/8
+
+Total Time: 0.00 seconds
+Average Time Per Move: 0.0000 seconds
+Min/Max Time for a Move: 0.0000/0.0001 seconds
+
+Average Game Duration: 0.00 seconds
+Min/Max Game Duration: 0.00/0.00 seconds
+

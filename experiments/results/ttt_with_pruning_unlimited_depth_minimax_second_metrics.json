@@ -1,0 +1,42 @@
+{
+  "experiment_info": {
+    "game": "ttt",
+    "minimax_player": "second",
+    "max_depth": "inf",
+    "use_pruning": true,
+    "num_games": 10,
+    "timeouts": 0
+  },
+  "minimax_results": {
+    "wins": 0,
+    "losses": 0,
+    "draws": 10,
+    "win_rate": 0.0,
+    "loss_rate": 0.0,
+    "draw_rate": 1.0
+  },
+  "game_metrics": {
+    "total_games": 10,
+    "wins": 0,
+    "losses": 0,
+    "draws": 10,
+    "win_rate": 0.0,
+    "loss_rate": 0.0,
+    "draw_rate": 1.0,
+    "avg_moves": 9.0,
+    "min_moves": 9,
+    "max_moves": 9,
+    "total_moves": 90,
+    "avg_time_per_move": 0.0022033638424343535,
+    "min_time_per_move": 2.0503997802734375e-05,
+    "max_time_per_move": 0.031836748123168945,
+    "total_time": 0.1983027458190918,
+    "avg_game_duration": 0.020341372489929198,
+    "min_game_duration": 0.014821290969848633,
+    "max_game_duration": 0.036147117614746094,
+    "avg_states_explored": 2581.6,
+    "min_states_explored": 2472,
+    "max_states_explored": 2638,
+    "total_states_explored": 25816
+  }
+}

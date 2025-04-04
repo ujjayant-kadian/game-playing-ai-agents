@@ -1,0 +1,23 @@
+===== Experiment Results =====
+Game: c4
+Minimax Config: First Player, Max Depth: 5, With Alpha-Beta Pruning
+Games Played: 10
+Minimax Wins: 10 (100.0%)
+Minimax Losses: 0 (0.0%)
+Draws: 0 (0.0%)
+
+===== Detailed Game Metrics =====
+Total Moves: 204
+Average Moves Per Game: 20.40
+Min/Max Moves in a Game: 11/29
+
+Total Time: 49.56 seconds
+Average Time Per Move: 0.2429 seconds
+Min/Max Time for a Move: 0.0001/1.4412 seconds
+
+Average Game Duration: 4.96 seconds
+Min/Max Game Duration: 3.20/7.46 seconds
+
+Total States Explored: 201129
+Average States Explored Per Game: 20113
+Min/Max States Explored in a Game: 14007/26815

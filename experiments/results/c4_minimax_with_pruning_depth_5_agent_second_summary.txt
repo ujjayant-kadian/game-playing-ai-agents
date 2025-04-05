@@ -1,23 +1,23 @@
 ===== Experiment Results =====
 Game: c4
 Agent: Minimax, Second Player, Max Depth: 5, With Alpha-Beta Pruning
-Games Played: 10
-Agent Wins: 10 (100.0%)
+Games Played: 100
+Agent Wins: 100 (100.0%)
 Agent Losses: 0 (0.0%)
 Draws: 0 (0.0%)
 
 ===== Detailed Game Metrics =====
-Total Moves: 238
-Average Moves Per Game: 23.80
-Min/Max Moves in a Game: 18/30
+Total Moves: 2362
+Average Moves Per Game: 23.62
+Min/Max Moves in a Game: 10/36
 
-Total Time: 37.49 seconds
-Average Time Per Move: 0.1575 seconds
-Min/Max Time for a Move: 0.0000/0.9208 seconds
+Total Time: 408.45 seconds
+Average Time Per Move: 0.1729 seconds
+Min/Max Time for a Move: 0.0000/1.5728 seconds
 
-Average Game Duration: 3.75 seconds
-Min/Max Game Duration: 2.81/5.59 seconds
+Average Game Duration: 4.09 seconds
+Min/Max Game Duration: 1.84/8.35 seconds
 
-Total States Explored: 207949
-Average States Explored Per Game: 20795
-Min/Max States Explored in a Game: 15370/29462
+Total States Explored: 2231982
+Average States Explored Per Game: 22320
+Min/Max States Explored in a Game: 10696/45816

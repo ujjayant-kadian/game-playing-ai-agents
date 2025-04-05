@@ -8,32 +8,32 @@ Agent 1 (Player 1): minimax
 Agent 2 (Player 2): qlearning
   Q-Table: Loaded from models/c4_qtable.pkl
 
-Games Played: 100
-Agent 1 Wins: 100 (100.0%)
+Games Played: 10
+Agent 1 Wins: 10 (100.0%)
 Agent 2 Wins: 0 (0.0%)
 Draws: 0 (0.0%)
 
 ===== Detailed Game Metrics =====
 
 Agent 1 Metrics:
-Total Moves: 500
+Total Moves: 50
 Average Moves Per Game: 5.00
 Min/Max Moves in a Game: 5/5
-Total Time: 235.11 seconds
-Average Time Per Move: 0.4702 seconds
-Min/Max Time for a Move: 0.1885/1.3483 seconds
-Total States Explored: 1318500
+Total Time: 26.66 seconds
+Average Time Per Move: 0.5332 seconds
+Min/Max Time for a Move: 0.2032/1.8019 seconds
+Total States Explored: 131850
 Average States Explored Per Game: 13185
 Min/Max States Explored in a Game: 13185/13185
 
 Agent 2 Metrics:
-Total Moves: 400
+Total Moves: 40
 Average Moves Per Game: 4.00
 Min/Max Moves in a Game: 4/4
-Total Time: 0.66 seconds
-Average Time Per Move: 0.0016 seconds
-Min/Max Time for a Move: 0.0001/0.0054 seconds
+Total Time: 0.07 seconds
+Average Time Per Move: 0.0018 seconds
+Min/Max Time for a Move: 0.0002/0.0048 seconds
 
 Overall Game Information:
-Average Game Duration: 2.36 seconds
-Min/Max Game Duration: 2.13/3.03 seconds
+Average Game Duration: 2.67 seconds
+Min/Max Game Duration: 2.47/3.67 seconds

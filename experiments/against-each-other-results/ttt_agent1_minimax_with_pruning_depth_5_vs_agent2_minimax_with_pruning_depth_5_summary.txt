@@ -1,0 +1,43 @@
+===== Experiment Results =====
+Game: ttt
+
+Agent 1 (Player 1): minimax
+  Max Depth: 5
+  Alpha-Beta Pruning: Enabled
+
+Agent 2 (Player 2): minimax
+  Max Depth: 5
+  Alpha-Beta Pruning: Enabled
+
+Games Played: 50
+Agent 1 Wins: 0 (0.0%)
+Agent 2 Wins: 0 (0.0%)
+Draws: 50 (100.0%)
+
+===== Detailed Game Metrics =====
+
+Agent 1 Metrics:
+Total Moves: 250
+Average Moves Per Game: 5.00
+Min/Max Moves in a Game: 5/5
+Total Time: 2.45 seconds
+Average Time Per Move: 0.0098 seconds
+Min/Max Time for a Move: 0.0000/0.0757 seconds
+Total States Explored: 168850
+Average States Explored Per Game: 3377
+Min/Max States Explored in a Game: 3377/3377
+
+Agent 2 Metrics:
+Total Moves: 200
+Average Moves Per Game: 4.00
+Min/Max Moves in a Game: 4/4
+Total Time: 0.70 seconds
+Average Time Per Move: 0.0035 seconds
+Min/Max Time for a Move: 0.0000/0.0289 seconds
+Total States Explored: 52900
+Average States Explored Per Game: 1058
+Min/Max States Explored in a Game: 1058/1058
+
+Overall Game Information:
+Average Game Duration: 0.06 seconds
+Min/Max Game Duration: 0.06/0.09 seconds

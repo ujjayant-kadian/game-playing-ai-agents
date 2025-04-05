@@ -197,18 +197,6 @@ class TicTacToeUI:
                     if event.key == pygame.K_r:  # Reset game
                         self.game.reset()
                         self.player_move = (self.player1_type == PlayerType.HUMAN)
-                    
-                    # Game mode selection keys
-                    if event.key == pygame.K_1:
-                        self.set_game_mode(GameMode.HUMAN_VS_HUMAN)
-                    elif event.key == pygame.K_2:
-                        self.set_game_mode(GameMode.HUMAN_VS_AI)
-                    elif event.key == pygame.K_3:
-                        self.set_game_mode(GameMode.HUMAN_VS_SEMI)
-                    elif event.key == pygame.K_4:
-                        self.set_game_mode(GameMode.AI_VS_SEMI)
-                    elif event.key == pygame.K_5:
-                        self.set_game_mode(GameMode.AI_VS_AI)
             
             # Handle AI agent moves
             if not self.game.is_game_over():
@@ -287,10 +275,6 @@ class TicTacToeUI:
         }
         mode_text = self.font.render(f"Mode: {mode_names[self.game_mode]}", True, self.text_color)
         self.screen.blit(mode_text, (self.width // 2 - mode_text.get_width() // 2, 80))
-        
-        # Draw instructions for changing modes
-        mode_instructions = self.font.render("Press 1-5 to change mode", True, self.text_color)
-        self.screen.blit(mode_instructions, (self.width // 2 - mode_instructions.get_width() // 2, 120))
         
         # Game status
         if self.game.is_game_over():

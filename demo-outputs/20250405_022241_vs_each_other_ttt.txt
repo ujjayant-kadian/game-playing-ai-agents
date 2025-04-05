@@ -1,0 +1,154 @@
+=== Command ===
+python -m experiments.play_vs_each_other --game ttt --agent1-type minimax --agent1-use-pruning --agent1-max-depth 5 --agent2-type qlearning --agent2-q-table models/c4_qtable.pkl --num-games 10 --move-timeout 300 --verbose
+
+=== Output ===
+pygame 2.6.1 (SDL 2.28.4, Python 3.10.16)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+Loaded Q-table from models/c4_qtable.pkl
+===== Evaluating Agents Against Each Other =====
+Running 10 evaluation games...
+
+Playing games:   0%|          | 0/10 [00:00<?, ?it/s]Player 1 (MinimaxTicTacToe) took 0.0573 seconds to move
+Player 2 (QLearningTicTacToe) took 0.0001 seconds to move
+Player 1 (MinimaxTicTacToe) took 0.0072 seconds to move
+Player 2 (QLearningTicTacToe) took 0.0000 seconds to move
+Player 1 (MinimaxTicTacToe) took 0.0003 seconds to move
+Player 2 (QLearningTicTacToe) took 0.0000 seconds to move
+Player 1 (MinimaxTicTacToe) took 0.0000 seconds to move
+Player 1 won
+Game 1 result: 1
+Player 1 (MinimaxTicTacToe) took 0.0464 seconds to move
+Player 2 (QLearningTicTacToe) took 0.0000 seconds to move
+Player 1 (MinimaxTicTacToe) took 0.0031 seconds to move
+Player 2 (QLearningTicTacToe) took 0.0000 seconds to move
+Player 1 (MinimaxTicTacToe) took 0.0003 seconds to move
+Player 2 (QLearningTicTacToe) took 0.0000 seconds to move
+Player 1 (MinimaxTicTacToe) took 0.0000 seconds to move
+Player 1 won
+Game 2 result: 1
+
+Playing games:  20%|██        | 2/10 [00:00<00:00, 17.27it/s]Player 1 (MinimaxTicTacToe) took 0.0510 seconds to move
+Player 2 (QLearningTicTacToe) took 0.0000 seconds to move
+Player 1 (MinimaxTicTacToe) took 0.0023 seconds to move
+Player 2 (QLearningTicTacToe) took 0.0000 seconds to move
+Player 1 (MinimaxTicTacToe) took 0.0002 seconds to move
+Player 2 (QLearningTicTacToe) took 0.0000 seconds to move
+Player 1 (MinimaxTicTacToe) took 0.0000 seconds to move
+Player 1 won
+Game 3 result: 1
+Player 1 (MinimaxTicTacToe) took 0.0655 seconds to move
+Player 2 (QLearningTicTacToe) took 0.0001 seconds to move
+Player 1 (MinimaxTicTacToe) took 0.0057 seconds to move
+Player 2 (QLearningTicTacToe) took 0.0000 seconds to move
+Player 1 (MinimaxTicTacToe) took 0.0006 seconds to move
+Player 2 (QLearningTicTacToe) took 0.0000 seconds to move
+Player 1 (MinimaxTicTacToe) took 0.0001 seconds to move
+Player 1 won
+Game 4 result: 1
+
+Playing games:  40%|████      | 4/10 [00:00<00:00, 16.35it/s]Player 1 (MinimaxTicTacToe) took 0.0692 seconds to move
+Player 2 (QLearningTicTacToe) took 0.0001 seconds to move
+Player 1 (MinimaxTicTacToe) took 0.0030 seconds to move
+Player 2 (QLearningTicTacToe) took 0.0000 seconds to move
+Player 1 (MinimaxTicTacToe) took 0.0006 seconds to move
+Player 2 (QLearningTicTacToe) took 0.0000 seconds to move
+Player 1 (MinimaxTicTacToe) took 0.0001 seconds to move
+Player 1 won
+Game 5 result: 1
+Player 1 (MinimaxTicTacToe) took 0.0719 seconds to move
+Player 2 (QLearningTicTacToe) took 0.0001 seconds to move
+Player 1 (MinimaxTicTacToe) took 0.0033 seconds to move
+Player 2 (QLearningTicTacToe) took 0.0000 seconds to move
+Player 1 (MinimaxTicTacToe) took 0.0008 seconds to move
+Player 2 (QLearningTicTacToe) took 0.0000 seconds to move
+Player 1 (MinimaxTicTacToe) took 0.0001 seconds to move
+Player 1 won
+Game 6 result: 1
+
+Playing games:  60%|██████    | 6/10 [00:00<00:00, 14.81it/s]Player 1 (MinimaxTicTacToe) took 0.0727 seconds to move
+Player 2 (QLearningTicTacToe) took 0.0001 seconds to move
+Player 1 (MinimaxTicTacToe) took 0.0038 seconds to move
+Player 2 (QLearningTicTacToe) took 0.0000 seconds to move
+Player 1 (MinimaxTicTacToe) took 0.0005 seconds to move
+Player 2 (QLearningTicTacToe) took 0.0000 seconds to move
+Player 1 (MinimaxTicTacToe) took 0.0001 seconds to move
+Player 2 (QLearningTicTacToe) took 0.0000 seconds to move
+Player 1 (MinimaxTicTacToe) took 0.0000 seconds to move
+Player 1 won
+Game 7 result: 1
+Player 1 (MinimaxTicTacToe) took 0.0689 seconds to move
+Player 2 (QLearningTicTacToe) took 0.0001 seconds to move
+Player 1 (MinimaxTicTacToe) took 0.0045 seconds to move
+Player 2 (QLearningTicTacToe) took 0.0000 seconds to move
+Player 1 (MinimaxTicTacToe) took 0.0003 seconds to move
+Player 2 (QLearningTicTacToe) took 0.0000 seconds to move
+Player 1 (MinimaxTicTacToe) took 0.0001 seconds to move
+Player 1 won
+Game 8 result: 1
+
+Playing games:  80%|████████  | 8/10 [00:00<00:00, 14.08it/s]Player 1 (MinimaxTicTacToe) took 0.0680 seconds to move
+Player 2 (QLearningTicTacToe) took 0.0000 seconds to move
+Player 1 (MinimaxTicTacToe) took 0.0044 seconds to move
+Player 2 (QLearningTicTacToe) took 0.0000 seconds to move
+Player 1 (MinimaxTicTacToe) took 0.0006 seconds to move
+Player 2 (QLearningTicTacToe) took 0.0000 seconds to move
+Player 1 (MinimaxTicTacToe) took 0.0001 seconds to move
+Player 1 won
+Game 9 result: 1
+Player 1 (MinimaxTicTacToe) took 0.0680 seconds to move
+Player 2 (QLearningTicTacToe) took 0.0000 seconds to move
+Player 1 (MinimaxTicTacToe) took 0.0144 seconds to move
+Player 2 (QLearningTicTacToe) took 0.0000 seconds to move
+Player 1 (MinimaxTicTacToe) took 0.0003 seconds to move
+Player 2 (QLearningTicTacToe) took 0.0001 seconds to move
+Player 1 (MinimaxTicTacToe) took 0.0000 seconds to move
+Player 1 won
+Game 10 result: 1
+
+Playing games: 100%|██████████| 10/10 [00:00<00:00, 13.54it/s]
+Playing games: 100%|██████████| 10/10 [00:00<00:00, 14.22it/s]
+
+===== Experiment Results =====
+Game: ttt
+
+Agent 1 (Player 1): minimax
+  Max Depth: 5
+  Alpha-Beta Pruning: Enabled
+
+Agent 2 (Player 2): qlearning
+  Q-Table: Loaded from models/c4_qtable.pkl
+
+Games Played: 10
+Agent 1 Wins: 10 (100.0%)
+Agent 2 Wins: 0 (0.0%)
+Draws: 0 (0.0%)
+──── Game Summary ────
+Total Games: 10
+Wins: 0, Losses: 0, Draws: 10
+Avg. Moves/Game: 7.20
+Avg. Time/Move: 0.0097 sec
+Avg. Game Duration: 0.07 sec
+Avg. States Explored (Minimax): 0
+──────────────────────
+──── Game Summary ────
+Total Games: 10
+Wins: 10, Losses: 0, Draws: 0
+Avg. Moves/Game: 4.10
+Avg. Time/Move: 0.0170 sec
+Avg. Game Duration: 0.07 sec
+Avg. States Explored (Minimax): 3240
+──────────────────────
+──── Game Summary ────
+Total Games: 10
+Wins: 0, Losses: 10, Draws: 0
+Avg. Moves/Game: 3.10
+Avg. Time/Move: 0.0000 sec
+Avg. Game Duration: 0.07 sec
+Avg. States Explored (Minimax): 0
+──────────────────────
+Overall game metrics saved to experiments/against-each-other-results/ttt_agent1_minimax_with_pruning_depth_5_vs_agent2_qlearning_with_q_table_untrained_metrics.csv
+Agent 1 metrics saved to experiments/against-each-other-results/ttt_agent1_minimax_with_pruning_depth_5_vs_agent2_qlearning_with_q_table_untrained_agent1_metrics.csv
+Agent 2 metrics saved to experiments/against-each-other-results/ttt_agent1_minimax_with_pruning_depth_5_vs_agent2_qlearning_with_q_table_untrained_agent2_metrics.csv
+Agent 2 Q-learning metrics saved to experiments/against-each-other-results/ttt_agent1_minimax_with_pruning_depth_5_vs_agent2_qlearning_with_q_table_untrained_agent2_qlearn_metrics_*.csv
+Combined metrics JSON saved to experiments/against-each-other-results/ttt_agent1_minimax_with_pruning_depth_5_vs_agent2_qlearning_with_q_table_untrained_metrics.json
+Summary saved to experiments/against-each-other-results/ttt_agent1_minimax_with_pruning_depth_5_vs_agent2_qlearning_with_q_table_untrained_summary.txt

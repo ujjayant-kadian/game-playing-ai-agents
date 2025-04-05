@@ -2,6 +2,7 @@ import numpy as np
 import pygame
 import time
 from enum import Enum
+from games.tic_tac_toe import PlayerType, GameMode
 
 class Connect4:
     def __init__(self):
@@ -111,18 +112,6 @@ class Connect4:
         """Return the winner (1 or 2 for players, 0 for draw, None if game not over)."""
         return self.winner
 
-class PlayerType(Enum):
-    HUMAN = 0
-    AI = 1
-    SEMI_INTELLIGENT = 2
-
-class GameMode(Enum):
-    HUMAN_VS_HUMAN = 0
-    HUMAN_VS_AI = 1
-    HUMAN_VS_SEMI = 2
-    AI_VS_SEMI = 3
-    AI_VS_AI = 4
-
 class Connect4UI:
     def __init__(self):
         pygame.init()
@@ -155,6 +144,15 @@ class Connect4UI:
         self.ai_move_delay = 0.5  # Delay between AI moves in seconds
         self.last_ai_move_time = 0  # Last time AI made a move
         
+        # Mode names dictionary for UI
+        self.mode_names = {
+            GameMode.HUMAN_VS_HUMAN: "Human vs Human",
+            GameMode.HUMAN_VS_AI: "Human vs AI",
+            GameMode.HUMAN_VS_SEMI: "Human vs Semi-Intelligent",
+            GameMode.AI_VS_SEMI: "AI vs Semi-Intelligent",
+            GameMode.AI_VS_AI: "AI vs AI"
+        }
+        
         # Animation
         self.anim_active = False
         self.anim_col = 0
@@ -165,6 +163,8 @@ class Connect4UI:
     
     def set_game_mode(self, mode):
         """Set the game mode and initialize appropriate players."""
+        if isinstance(mode, int):
+            mode = GameMode(mode)  # Convert int to GameMode Enum
         self.game_mode = mode
         
         if mode == GameMode.HUMAN_VS_HUMAN:
@@ -227,18 +227,6 @@ class Connect4UI:
                         self.game.reset()
                         self.player_move = (self.player1_type == PlayerType.HUMAN)
                         self.anim_active = False
-                    
-                    # Game mode selection keys
-                    if event.key == pygame.K_1:
-                        self.set_game_mode(GameMode.HUMAN_VS_HUMAN)
-                    elif event.key == pygame.K_2:
-                        self.set_game_mode(GameMode.HUMAN_VS_AI)
-                    elif event.key == pygame.K_3:
-                        self.set_game_mode(GameMode.HUMAN_VS_SEMI)
-                    elif event.key == pygame.K_4:
-                        self.set_game_mode(GameMode.AI_VS_SEMI)
-                    elif event.key == pygame.K_5:
-                        self.set_game_mode(GameMode.AI_VS_AI)
             
             # Handle AI and semi-intelligent agent moves
             if not self.game.is_game_over() and not self.anim_active:
@@ -342,19 +330,8 @@ class Connect4UI:
         self.screen.blit(status, (self.width // 2 - status.get_width() // 2, self.height - 160))
         
         # Display current game mode
-        mode_names = {
-            GameMode.HUMAN_VS_HUMAN: "Human vs Human",
-            GameMode.HUMAN_VS_AI: "Human vs AI",
-            GameMode.HUMAN_VS_SEMI: "Human vs Semi-Intelligent",
-            GameMode.AI_VS_SEMI: "AI vs Semi-Intelligent",
-            GameMode.AI_VS_AI: "AI vs AI"
-        }
-        mode_text = self.font.render(f"Mode: {mode_names[self.game_mode]}", True, self.text_color)
+        mode_text = self.font.render(f"Mode: {self.mode_names[self.game_mode]}", True, self.text_color)
         self.screen.blit(mode_text, (30, self.height - 50))
-        
-        # Draw mode selection instructions
-        mode_instructions = self.font.render("Press 1-5 to change mode", True, self.text_color)
-        self.screen.blit(mode_instructions, (120, self.height - 100))
         
         # Draw board background
         pygame.draw.rect(

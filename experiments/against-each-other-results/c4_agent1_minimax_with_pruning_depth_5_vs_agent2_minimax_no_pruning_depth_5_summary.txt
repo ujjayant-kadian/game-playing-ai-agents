@@ -1,0 +1,43 @@
+===== Experiment Results =====
+Game: c4
+
+Agent 1 (Player 1): minimax
+  Max Depth: 5
+  Alpha-Beta Pruning: Enabled
+
+Agent 2 (Player 2): minimax
+  Max Depth: 5
+  Alpha-Beta Pruning: Disabled
+
+Games Played: 10
+Agent 1 Wins: 0 (0.0%)
+Agent 2 Wins: 10 (100.0%)
+Draws: 0 (0.0%)
+
+===== Detailed Game Metrics =====
+
+Agent 1 Metrics:
+Total Moves: 180
+Average Moves Per Game: 18.00
+Min/Max Moves in a Game: 18/18
+Total Time: 41.59 seconds
+Average Time Per Move: 0.2311 seconds
+Min/Max Time for a Move: 0.0001/1.2249 seconds
+Total States Explored: 242160
+Average States Explored Per Game: 24216
+Min/Max States Explored in a Game: 24216/24216
+
+Agent 2 Metrics:
+Total Moves: 180
+Average Moves Per Game: 18.00
+Min/Max Moves in a Game: 18/18
+Total Time: 246.25 seconds
+Average Time Per Move: 1.3680 seconds
+Min/Max Time for a Move: 0.0002/4.6473 seconds
+Total States Explored: 1238600
+Average States Explored Per Game: 123860
+Min/Max States Explored in a Game: 123860/123860
+
+Overall Game Information:
+Average Game Duration: 28.79 seconds
+Min/Max Game Duration: 27.36/30.88 seconds

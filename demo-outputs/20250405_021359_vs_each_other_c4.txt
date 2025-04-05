@@ -1,0 +1,177 @@
+=== Command ===
+python -m experiments.play_vs_each_other --game c4 --agent1-type minimax --agent1-use-pruning --agent1-max-depth 5 --agent2-type qlearning --agent2-q-table models/c4_qtable.pkl --num-games 10 --move-timeout 300 --verbose
+
+=== Output ===
+pygame 2.6.1 (SDL 2.28.4, Python 3.10.16)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+Loaded Q-table from models/c4_qtable.pkl
+===== Evaluating Agents Against Each Other =====
+Running 10 evaluation games...
+
+Playing games:   0%|          | 0/10 [00:00<?, ?it/s]Player 1 (MinimaxConnect4) took 0.4472 seconds to move
+Player 2 (QLearningConnect4) took 0.0024 seconds to move
+Player 1 (MinimaxConnect4) took 0.6559 seconds to move
+Player 2 (QLearningConnect4) took 0.0020 seconds to move
+Player 1 (MinimaxConnect4) took 0.7364 seconds to move
+Player 2 (QLearningConnect4) took 0.0022 seconds to move
+Player 1 (MinimaxConnect4) took 0.2253 seconds to move
+Player 2 (QLearningConnect4) took 0.0002 seconds to move
+Player 1 (MinimaxConnect4) took 0.3964 seconds to move
+Player 1 won
+Game 1 result: 1
+
+Playing games:  10%|█         | 1/10 [00:02<00:22,  2.47s/it]Player 1 (MinimaxConnect4) took 0.4759 seconds to move
+Player 2 (QLearningConnect4) took 0.0023 seconds to move
+Player 1 (MinimaxConnect4) took 0.7015 seconds to move
+Player 2 (QLearningConnect4) took 0.0020 seconds to move
+Player 1 (MinimaxConnect4) took 0.7355 seconds to move
+Player 2 (QLearningConnect4) took 0.0023 seconds to move
+Player 1 (MinimaxConnect4) took 0.2304 seconds to move
+Player 2 (QLearningConnect4) took 0.0002 seconds to move
+Player 1 (MinimaxConnect4) took 0.4181 seconds to move
+Player 1 won
+Game 2 result: 1
+
+Playing games:  20%|██        | 2/10 [00:05<00:20,  2.53s/it]Player 1 (MinimaxConnect4) took 0.4870 seconds to move
+Player 2 (QLearningConnect4) took 0.0021 seconds to move
+Player 1 (MinimaxConnect4) took 0.6607 seconds to move
+Player 2 (QLearningConnect4) took 0.0025 seconds to move
+Player 1 (MinimaxConnect4) took 0.7648 seconds to move
+Player 2 (QLearningConnect4) took 0.0021 seconds to move
+Player 1 (MinimaxConnect4) took 0.2289 seconds to move
+Player 2 (QLearningConnect4) took 0.0002 seconds to move
+Player 1 (MinimaxConnect4) took 0.3960 seconds to move
+Player 1 won
+Game 3 result: 1
+
+Playing games:  30%|███       | 3/10 [00:07<00:17,  2.54s/it]Player 1 (MinimaxConnect4) took 0.4292 seconds to move
+Player 2 (QLearningConnect4) took 0.0023 seconds to move
+Player 1 (MinimaxConnect4) took 0.6211 seconds to move
+Player 2 (QLearningConnect4) took 0.0021 seconds to move
+Player 1 (MinimaxConnect4) took 0.7950 seconds to move
+Player 2 (QLearningConnect4) took 0.0048 seconds to move
+Player 1 (MinimaxConnect4) took 0.2599 seconds to move
+Player 2 (QLearningConnect4) took 0.0002 seconds to move
+Player 1 (MinimaxConnect4) took 0.3918 seconds to move
+Player 1 won
+Game 4 result: 1
+
+Playing games:  40%|████      | 4/10 [00:10<00:15,  2.52s/it]Player 1 (MinimaxConnect4) took 0.4420 seconds to move
+Player 2 (QLearningConnect4) took 0.0021 seconds to move
+Player 1 (MinimaxConnect4) took 0.7228 seconds to move
+Player 2 (QLearningConnect4) took 0.0023 seconds to move
+Player 1 (MinimaxConnect4) took 0.7979 seconds to move
+Player 2 (QLearningConnect4) took 0.0020 seconds to move
+Player 1 (MinimaxConnect4) took 0.2893 seconds to move
+Player 2 (QLearningConnect4) took 0.0004 seconds to move
+Player 1 (MinimaxConnect4) took 0.4054 seconds to move
+Player 1 won
+Game 5 result: 1
+
+Playing games:  50%|█████     | 5/10 [00:12<00:12,  2.58s/it]Player 1 (MinimaxConnect4) took 0.4585 seconds to move
+Player 2 (QLearningConnect4) took 0.0027 seconds to move
+Player 1 (MinimaxConnect4) took 1.8019 seconds to move
+Player 2 (QLearningConnect4) took 0.0022 seconds to move
+Player 1 (MinimaxConnect4) took 0.7459 seconds to move
+Player 2 (QLearningConnect4) took 0.0021 seconds to move
+Player 1 (MinimaxConnect4) took 0.2449 seconds to move
+Player 2 (QLearningConnect4) took 0.0002 seconds to move
+Player 1 (MinimaxConnect4) took 0.4148 seconds to move
+Player 1 won
+Game 6 result: 1
+
+Playing games:  60%|██████    | 6/10 [00:16<00:11,  2.95s/it]Player 1 (MinimaxConnect4) took 0.5002 seconds to move
+Player 2 (QLearningConnect4) took 0.0024 seconds to move
+Player 1 (MinimaxConnect4) took 0.6717 seconds to move
+Player 2 (QLearningConnect4) took 0.0021 seconds to move
+Player 1 (MinimaxConnect4) took 0.7592 seconds to move
+Player 2 (QLearningConnect4) took 0.0022 seconds to move
+Player 1 (MinimaxConnect4) took 0.2340 seconds to move
+Player 2 (QLearningConnect4) took 0.0002 seconds to move
+Player 1 (MinimaxConnect4) took 0.4412 seconds to move
+Player 1 won
+Game 7 result: 1
+
+Playing games:  70%|███████   | 7/10 [00:19<00:08,  2.84s/it]Player 1 (MinimaxConnect4) took 0.4604 seconds to move
+Player 2 (QLearningConnect4) took 0.0024 seconds to move
+Player 1 (MinimaxConnect4) took 0.6772 seconds to move
+Player 2 (QLearningConnect4) took 0.0023 seconds to move
+Player 1 (MinimaxConnect4) took 0.7513 seconds to move
+Player 2 (QLearningConnect4) took 0.0021 seconds to move
+Player 1 (MinimaxConnect4) took 0.2479 seconds to move
+Player 2 (QLearningConnect4) took 0.0002 seconds to move
+Player 1 (MinimaxConnect4) took 0.4003 seconds to move
+Player 1 won
+Game 8 result: 1
+
+Playing games:  80%|████████  | 8/10 [00:21<00:05,  2.75s/it]Player 1 (MinimaxConnect4) took 0.4489 seconds to move
+Player 2 (QLearningConnect4) took 0.0022 seconds to move
+Player 1 (MinimaxConnect4) took 0.6789 seconds to move
+Player 2 (QLearningConnect4) took 0.0022 seconds to move
+Player 1 (MinimaxConnect4) took 0.8524 seconds to move
+Player 2 (QLearningConnect4) took 0.0032 seconds to move
+Player 1 (MinimaxConnect4) took 0.2445 seconds to move
+Player 2 (QLearningConnect4) took 0.0002 seconds to move
+Player 1 (MinimaxConnect4) took 0.3885 seconds to move
+Player 1 won
+Game 9 result: 1
+
+Playing games:  90%|█████████ | 9/10 [00:24<00:02,  2.71s/it]Player 1 (MinimaxConnect4) took 0.4139 seconds to move
+Player 2 (QLearningConnect4) took 0.0019 seconds to move
+Player 1 (MinimaxConnect4) took 0.7444 seconds to move
+Player 2 (QLearningConnect4) took 0.0021 seconds to move
+Player 1 (MinimaxConnect4) took 0.7309 seconds to move
+Player 2 (QLearningConnect4) took 0.0019 seconds to move
+Player 1 (MinimaxConnect4) took 0.2032 seconds to move
+Player 2 (QLearningConnect4) took 0.0002 seconds to move
+Player 1 (MinimaxConnect4) took 0.4299 seconds to move
+Player 1 won
+Game 10 result: 1
+
+Playing games: 100%|██████████| 10/10 [00:26<00:00,  2.65s/it]
+Playing games: 100%|██████████| 10/10 [00:26<00:00,  2.67s/it]
+
+===== Experiment Results =====
+Game: c4
+
+Agent 1 (Player 1): minimax
+  Max Depth: 5
+  Alpha-Beta Pruning: Enabled
+
+Agent 2 (Player 2): qlearning
+  Q-Table: Loaded from models/c4_qtable.pkl
+
+Games Played: 10
+Agent 1 Wins: 10 (100.0%)
+Agent 2 Wins: 0 (0.0%)
+Draws: 0 (0.0%)
+──── Game Summary ────
+Total Games: 10
+Wins: 0, Losses: 0, Draws: 10
+Avg. Moves/Game: 9.00
+Avg. Time/Move: 0.2970 sec
+Avg. Game Duration: 2.67 sec
+Avg. States Explored (Minimax): 0
+──────────────────────
+──── Game Summary ────
+Total Games: 10
+Wins: 10, Losses: 0, Draws: 0
+Avg. Moves/Game: 5.00
+Avg. Time/Move: 0.5332 sec
+Avg. Game Duration: 2.67 sec
+Avg. States Explored (Minimax): 13185
+──────────────────────
+──── Game Summary ────
+Total Games: 10
+Wins: 0, Losses: 10, Draws: 0
+Avg. Moves/Game: 4.00
+Avg. Time/Move: 0.0018 sec
+Avg. Game Duration: 2.67 sec
+Avg. States Explored (Minimax): 0
+──────────────────────
+Overall game metrics saved to experiments/against-each-other-results/c4_agent1_minimax_with_pruning_depth_5_vs_agent2_qlearning_with_q_table_untrained_metrics.csv
+Agent 1 metrics saved to experiments/against-each-other-results/c4_agent1_minimax_with_pruning_depth_5_vs_agent2_qlearning_with_q_table_untrained_agent1_metrics.csv
+Agent 2 metrics saved to experiments/against-each-other-results/c4_agent1_minimax_with_pruning_depth_5_vs_agent2_qlearning_with_q_table_untrained_agent2_metrics.csv
+Agent 2 Q-learning metrics saved to experiments/against-each-other-results/c4_agent1_minimax_with_pruning_depth_5_vs_agent2_qlearning_with_q_table_untrained_agent2_qlearn_metrics_*.csv
+Combined metrics JSON saved to experiments/against-each-other-results/c4_agent1_minimax_with_pruning_depth_5_vs_agent2_qlearning_with_q_table_untrained_metrics.json
+Summary saved to experiments/against-each-other-results/c4_agent1_minimax_with_pruning_depth_5_vs_agent2_qlearning_with_q_table_untrained_summary.txt

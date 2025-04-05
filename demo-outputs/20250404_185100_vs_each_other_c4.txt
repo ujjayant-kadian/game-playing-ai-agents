@@ -1,0 +1,66 @@
+=== Command ===
+python -m experiments.play_vs_each_other --game c4 --agent1-type minimax --agent1-use-pruning --agent1-max-depth 5 --agent2-type minimax --agent2-max-depth 5 --num-games 10 --move-timeout 300
+
+=== Output ===
+pygame 2.6.1 (SDL 2.28.4, Python 3.10.16)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+===== Evaluating Agents Against Each Other =====
+Running 10 evaluation games...
+
+Playing games:   0%|          | 0/10 [00:00<?, ?it/s]
+Playing games:  10%|█         | 1/10 [00:29<04:24, 29.36s/it]
+Playing games:  20%|██        | 2/10 [01:00<04:02, 30.26s/it]
+Playing games:  30%|███       | 3/10 [01:30<03:30, 30.07s/it]
+Playing games:  40%|████      | 4/10 [02:00<03:01, 30.19s/it]
+Playing games:  50%|█████     | 5/10 [02:28<02:26, 29.37s/it]
+Playing games:  60%|██████    | 6/10 [02:56<01:55, 28.92s/it]
+Playing games:  70%|███████   | 7/10 [03:23<01:25, 28.41s/it]
+Playing games:  80%|████████  | 8/10 [03:51<00:56, 28.30s/it]
+Playing games:  90%|█████████ | 9/10 [04:19<00:28, 28.14s/it]
+Playing games: 100%|██████████| 10/10 [04:47<00:00, 28.17s/it]
+Playing games: 100%|██████████| 10/10 [04:47<00:00, 28.79s/it]
+
+===== Experiment Results =====
+Game: c4
+
+Agent 1 (Player 1): minimax
+  Max Depth: 5
+  Alpha-Beta Pruning: Enabled
+
+Agent 2 (Player 2): minimax
+  Max Depth: 5
+  Alpha-Beta Pruning: Disabled
+
+Games Played: 10
+Agent 1 Wins: 0 (0.0%)
+Agent 2 Wins: 10 (100.0%)
+Draws: 0 (0.0%)
+──── Game Summary ────
+Total Games: 10
+Wins: 0, Losses: 0, Draws: 10
+Avg. Moves/Game: 36.00
+Avg. Time/Move: 0.7996 sec
+Avg. Game Duration: 28.79 sec
+Avg. States Explored (Minimax): 0
+──────────────────────
+──── Game Summary ────
+Total Games: 10
+Wins: 0, Losses: 10, Draws: 0
+Avg. Moves/Game: 18.00
+Avg. Time/Move: 0.2311 sec
+Avg. Game Duration: 28.79 sec
+Avg. States Explored (Minimax): 24216
+──────────────────────
+──── Game Summary ────
+Total Games: 10
+Wins: 10, Losses: 0, Draws: 0
+Avg. Moves/Game: 18.00
+Avg. Time/Move: 1.3680 sec
+Avg. Game Duration: 28.79 sec
+Avg. States Explored (Minimax): 123860
+──────────────────────
+Overall game metrics saved to experiments/against-each-other-results/c4_agent1_minimax_with_pruning_depth_5_vs_agent2_minimax_no_pruning_depth_5_metrics.csv
+Agent 1 metrics saved to experiments/against-each-other-results/c4_agent1_minimax_with_pruning_depth_5_vs_agent2_minimax_no_pruning_depth_5_agent1_metrics.csv
+Agent 2 metrics saved to experiments/against-each-other-results/c4_agent1_minimax_with_pruning_depth_5_vs_agent2_minimax_no_pruning_depth_5_agent2_metrics.csv
+Combined metrics JSON saved to experiments/against-each-other-results/c4_agent1_minimax_with_pruning_depth_5_vs_agent2_minimax_no_pruning_depth_5_metrics.json
+Summary saved to experiments/against-each-other-results/c4_agent1_minimax_with_pruning_depth_5_vs_agent2_minimax_no_pruning_depth_5_summary.txt

@@ -20,7 +20,7 @@ This project implements AI agents for Tic-Tac-Toe and Connect-4 games using Mini
 - **[utils/](./utils/)**: Utility functions for metrics calculation
 - **[models/](./models/)**: Storage for trained Q-learning models
 - **[demo-outputs/](./demo-outputs/)**: Output files from demo runs
-- **[demo_video/](./demo_video/)**: Demo videos showing agent performance
+- **[demo-video/](./demo-video/)**: Demo videos showing agent performance
 
 ## Running the Code
 

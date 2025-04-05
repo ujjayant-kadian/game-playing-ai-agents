@@ -1,6 +1,10 @@
 # Game Playing Agents: Minimax and Q-Learning
 
-This project implements AI agents for Tic-Tac-Toe and Connect-4 games using Minimax and Q-Learning algorithms.
+**Author**: Ujjayant Kadian  
+**Course**: CS7IS2 - Artificial Intelligence  
+**Assignment**: Game Playing Agents Implementation
+
+This project implements AI agents for Tic-Tac-Toe and Connect-4 games using Minimax and Q-Learning algorithms. The implementation demonstrates the application of classical and modern AI techniques in game-playing scenarios.
 
 ## Project Structure
 
